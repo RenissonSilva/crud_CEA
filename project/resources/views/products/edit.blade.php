@@ -1,18 +1,7 @@
 @extends('products.layout')
 
 @section('content')
-
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit product</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
-
+    <span class="titleProducts">Edit product</span>
     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Warning!</strong> Please check input field code<br><br>
@@ -31,26 +20,27 @@
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="name">
+                    <strong class="nameDesc">Name:</strong>
+                    <input type="text" name="name" value="{{ $product->name }}" style="margin-top:15px;" class="form-control" placeholder="name">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:</strong>
-                    <textarea class="form-control" style="height:150px" name="description" placeholder="Description">{{ $product->description }}</textarea>
+                    <strong class="nameDesc">Description:</strong>
+                    <textarea class="form-control" style="height:150px;margin-top:15px;" name="description" placeholder="Description">{{ $product->description }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Image:</strong>
+                    <strong class="nameDesc">Image:</strong>
                     <input type="file" name="image" />
-                    <img src="{{URL::to('/')}}/images/{{$product->image}}" width="150"/>
                     <input type="hidden" name="hidden_image" value="{{$product->image}}"/>
                 </div>
+                <img src="{{URL::to('/')}}/images/{{$product->image}}" width="150"/>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-outline-info btn-lg" href="{{ route('products.index') }}"> Back</a>
+              <button type="submit" class="btn btn-info btn-lg">Submit</button>
             </div>
         </div>
 

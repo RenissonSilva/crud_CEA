@@ -30,5 +30,13 @@ span > strong{
 }
 
 .nameDesc{
-    font-size:30px;
+    font-size:20px;
+}
+
+.alert-success{
+    background-color:#30a278!important;
+    p{
+        color:#fff;
+        text-align:center;
+    }
 }
