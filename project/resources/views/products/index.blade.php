@@ -45,7 +45,7 @@
         </tr>
         @endforeach
     </table>
-
+    @if (Auth::check())
     <table class="table table-bordered">
         <tr>
             <th>Image</th>
@@ -73,7 +73,7 @@
         </tr>
         @endforeach
     </table>
-
+    @endif
     {!! $products->links() !!}
 
 @endsection
