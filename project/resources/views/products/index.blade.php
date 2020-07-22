@@ -1,14 +1,6 @@
 @extends('products.layout')
 
 @section('content')
-    @auth
-    <form action="{{route('logout')}}" method="post">
-    @csrf
-    <button class="btn btn-secundary">{{auth()->user()->name}} - Logout</button>
-    </form>
-    @else
-        <a class="btn btn-secundary" href="{{ route('login') }}"> Login</a>
-    @endauth
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
