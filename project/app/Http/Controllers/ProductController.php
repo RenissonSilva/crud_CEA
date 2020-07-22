@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->paginate(10);
-        return view('products.index',compact('products'))->with('i',(request()->input('page',1)-1)*5);
+        return view('products.index',compact('products'))
+            ->with('i',(request()->input('page',1)-1)*5);
     }
 
     /**
@@ -42,9 +43,20 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'image' => 'required|image|max:4096',
         ]);
 
-        Product::create($request->all());
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('image'),$new_name);
+        $form_data = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $new_name,
+        );
+
+        Product::create($form_data);
 
         return redirect()->route('products.index')
             ->with('success','Product created successfully.');

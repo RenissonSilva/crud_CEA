@@ -28,14 +28,14 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Description</th>
             <th width="250px">Action</th>
         </tr>
         @foreach ($products as $product)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td><img src="{{URL::to('/')}}/images/{{$product->image}}" width="75"/> </td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->description }}</td>
             <td>
