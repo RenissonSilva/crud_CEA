@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Check all products</h2>
+                <span class="titleProducts">Check all products</span>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create new products</a>
+            <div class="justify-content-end">
+                <a class="btn btn-info btn-create" href="{{ route('products.create') }}"> Create new product</a>
             </div>
         </div>
     </div>
