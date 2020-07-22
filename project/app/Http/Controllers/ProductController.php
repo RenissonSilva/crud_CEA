@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,7 @@ class ProductController extends Controller
         $products = Product::latest()->paginate(10);
         return view('products.index',compact('products'))
             ->with('i',(request()->input('page',1)-1)*5);
+
     }
 
     /**
@@ -46,6 +48,7 @@ class ProductController extends Controller
             'image' => 'required|image|max:4096',
         ]);
 
+        $userID = Auth::id();
         $image = $request->file('image');
 
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
@@ -54,6 +57,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $new_name,
+            'user_id' =>$userID,
         );
 
         Product::create($form_data);
