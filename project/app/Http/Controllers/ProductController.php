@@ -68,9 +68,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
         //fazer verificação se existe
+        $product = Product::findOrFail($id);
         return view('products.show',compact('product'));
     }
 
@@ -80,8 +81,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
+        $product = Product::findOrFail($id);
         return view('products.edit',compact('product'));
     }
 
@@ -92,14 +94,34 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
 
-        $product->update($request->all());
+        if($image != ''){
+            $request->validate([
+                'name' => 'required',
+                'description' => 'required',
+                'image' => 'image|max:4096'
+            ]);
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+        }
+        else{
+            $request->validate([
+                'name' => 'required',
+                'description' => 'required',
+            ]);
+        }
+
+        $form_data = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $image_name,
+        );
+
+        Product::whereId($id)->update($form_data);
 
         return redirect()->route('products.index')
             ->with('success','Product updated successfully.');

@@ -11,6 +11,11 @@
         </div>
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <img src="{{URL::to('/')}}/images/{{$product->image}}" width="150"/>
+            </div>
+        </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -24,11 +29,6 @@
                 {{ $product->description }}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Image:</strong>
-                <img src="{{URL::to('/')}}/images/{{$product->image}}" width="150"/>
-            </div>
-        </div>
+
     </div>
 @endsection
