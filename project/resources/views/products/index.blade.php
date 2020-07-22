@@ -25,6 +25,26 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    <table class="table table-bordered">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th width="250px">Action</th>
+        </tr>
+        @foreach ($products as $product)
+        <tr>
+            <td><img src="{{URL::to('/')}}/images/{{$product->image}}" width="75"/> </td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->description }}</td>
+            <td>
+                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </table>
 
     <table class="table table-bordered">
         <tr>
@@ -42,7 +62,6 @@
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
-
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
 
                     @csrf

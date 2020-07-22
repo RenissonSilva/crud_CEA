@@ -70,6 +70,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        //fazer verificação se existe
         return view('products.show',compact('product'));
     }
 
