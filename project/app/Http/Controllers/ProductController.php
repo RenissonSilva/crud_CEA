@@ -18,9 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::first()->paginate(10);
-        return view('products.index',compact('products'))
-            ->with('i',(request()->input('page',1)-1)*5);
+        $products = Product::get();
+        return view('products.index',compact('products'));
 
     }
 

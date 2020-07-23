@@ -79,6 +79,5 @@
         </table>
         @endif</div>
     </div>
-    {!! $products->links() !!}
 
 @endsection
